@@ -11,6 +11,8 @@ Kelompok 3:
 
 ## Bagaimana Teori Bayes digunakan dalam Algoritma Naive Bayes
 
+cek
+
 ## Dataset yang digunakan
 
 ## Hasil eksekusi Naive Bayes
