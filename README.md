@@ -265,15 +265,14 @@ These probability outputs are useful for:
 - constructing ROC and precision–recall curves
 
 Therefore, probability outputs provide deeper insight into how the Naive Bayes classifier evaluates each network session.
+#### Naive Bayes Models in Scikit-Learn
 
-#### Naive Bayes Model from Scikit-Learn
-
-| Model | Feature Assumption | Likelihood Formula | Parameters | Suitable Data |
+| Model | Feature Assumption | Likelihood Formula | Key Parameters | Suitable Data |
 |------|------|------|------|------|
-| **Gaussian Naive Bayes** | Assumes features follow a normal (Gaussian) distribution | `P(x_i | C) = 1 / sqrt(2πσ²) * exp(-(x_i - μ)² / (2σ²))` | μ = mean of feature for class C<br>σ² = variance of feature for class C | Continuous numerical features such as `network_packet_size`, `session_duration`, `ip_reputation_score` |
-| **Multinomial Naive Bayes** | Assumes features represent counts from a multinomial distribution | `P(x_i | C) = (N_ic + α) / (N_c + αn)` | N_ic = count of feature i in class C<br>N_c = total feature count in class C<br>n = number of features<br>α = Laplace smoothing parameter | Discrete count features such as word frequencies in text classification |
-| **Bernoulli Naive Bayes** | Assumes features are binary variables (presence or absence) | `P(x_i | C) = p_ic^(x_i) * (1 - p_ic)^(1 - x_i)` | x_i ∈ {0,1}<br>p_ic = probability that feature i appears in class C | Binary features such as yes/no indicators |
-| **Complement Naive Bayes** | Variant of Multinomial NB designed for imbalanced datasets | `w_ci = log((N_ci + α) / (Σ N_cj + αn))` | N_ci = count of feature i in complement class<br>n = number of features<br>α = smoothing parameter | Imbalanced classification problems such as spam filtering or intrusion detection |
+| **Gaussian Naive Bayes** | Features follow a normal (Gaussian) distribution | `P(x_i \| C) = (1 / √(2πσ²)) * exp(-(x_i - μ)² / (2σ²))` | μ = mean of feature for class C<br>σ² = variance of feature for class C | Continuous numerical features such as `network_packet_size`, `session_duration`, `ip_reputation_score` |
+| **Multinomial Naive Bayes** | Features represent discrete counts | `P(x_i \| C) = (N_ic + α) / (N_c + αn)` | N_ic = count of feature *i* in class C<br>N_c = total feature count in class C<br>n = number of features<br>α = Laplace smoothing parameter | Count-based features such as word frequencies in text classification |
+| **Bernoulli Naive Bayes** | Features are binary (0 or 1) variables | `P(x_i \| C) = p_ic^(x_i) * (1 - p_ic)^(1-x_i)` | x_i ∈ {0,1}<br>p_ic = probability that feature *i* appears in class C | Binary features such as presence/absence indicators |
+| **Complement Naive Bayes** | Extension of Multinomial NB designed for imbalanced datasets | `w_ci = log((N_ci + α) / (Σ N_cj + αn))` | N_ci = count of feature *i* in complement class<br>n = number of features<br>α = smoothing parameter | Imbalanced classification problems such as spam filtering or intrusion detection |
 
 In this project, these variants are compared to determine which Naive Bayes model performs best for detecting cyber attacks in network session data.
 
