@@ -9,6 +9,84 @@ Team 5:
 
 ## Bayes Theory
 
+Bayes' Theorem is a fundamental concept in probability theory that describes how the probability of a hypothesis can be updated when new evidence becomes available. It provides a mathematical framework for reasoning under uncertainty by combining prior knowledge with observed data.
+
+The general form of Bayes' Theorem is:
+
+P(A | B) = (P(B | A) \* P(A)) / P(B)
+
+![rumus bayes](./asset/rumus-bayes.png)
+
+Where:
+
+| Term        | Meaning                                                                                       |
+| ----------- | --------------------------------------------------------------------------------------------- |
+| (P(A \| B)) | Posterior probability: the probability of event **A** occurring given that **B** has occurred |
+| (P(B \| A)) | Likelihood: the probability of observing **B** if **A** is true                               |
+| (P(A))      | Prior probability: the initial probability of **A** before observing any evidence             |
+| (P(B))      | Evidence: the overall probability of observing **B**                                          |
+
+The theorem shows how the posterior probability is computed by combining the prior belief with the likelihood of the observed evidence.
+
+In many real-world problems, the denominator (P(B)) can be expanded using the law of total probability:
+
+![rumus bayes](./asset/rumus-1.png)
+
+This allows Bayes' Theorem to be written as:
+
+![rumus bayes](./asset/rumus-2.png)
+
+This formulation is particularly useful in classification problems where there are multiple possible classes.
+
+### Intuition Behind Bayes' Theorem
+
+Bayes' Theorem can be interpreted as a way to update beliefs after observing new evidence.
+
+1. Start with an initial belief about an event (prior probability).
+2. Observe new data or evidence.
+3. Update the probability of the event based on how consistent the evidence is with that event.
+
+The updated probability is called the posterior probability.
+
+### Example in Cyber Attack Detection
+
+In the context of cybersecurity intrusion detection, Bayes' Theorem can be used to estimate the probability that a network session is a cyber attack based on observed network features.
+
+For example:
+
+- Event (A): the session is a cyber attack.
+- Evidence (B): suspicious network behavior such as many failed login attempts, low IP reputation score, or unusual access time.
+
+Using Bayes' Theorem, the model estimates:
+
+```
+P(Attack | Observed Features)
+```
+
+This represents the probability that a session is malicious given the observed network activity.
+
+Similarly, the probability of the session being normal traffic can also be computed:
+
+```
+P(Normal | Observed Features)
+```
+
+The classification model then compares these probabilities and selects the class with the highest value.
+
+### Importance of Bayes' Theorem in Machine Learning
+
+Bayes' Theorem forms the theoretical foundation of several probabilistic machine learning models, including the Naive Bayes classifier.
+
+In classification tasks, Bayes' Theorem allows a model to:
+
+- estimate the probability that a data instance belongs to each class
+- incorporate prior knowledge about class distributions
+- update predictions based on observed features
+
+Because of its probabilistic nature, Bayes-based models provide not only class predictions but also confidence estimates in the form of probabilities.
+
+This property makes Bayesian approaches particularly useful in applications such as spam detection, medical diagnosis, and cybersecurity intrusion detection.
+
 ## How Bayes Theory Implemented on Naive Bayes Model
 
 ## Overview about the Dataset
@@ -23,30 +101,30 @@ Each row represents a network session and contains several features related to n
 
 ### Dataset Features
 
-| Feature | Type | Description |
-|---|---|---|
-| network_packet_size | Numerical | The size of packets transmitted during a network session. |
-| protocol_type | Categorical | The network protocol used during communication (TCP or UDP). |
-| login_attempts | Numerical | Number of login attempts within the session. |
-| session_duration | Numerical | The total duration of the network session. |
-| encryption_used | Categorical | Type of encryption used in the connection. |
-| ip_reputation_score | Numerical | A score indicating the trustworthiness of the source IP address. |
-| failed_logins | Numerical | Number of failed authentication attempts. |
-| browser_type | Categorical | Browser used in the session. |
-| unusual_time_access | Binary | Indicates whether the session occurred at an unusual time. |
-| attack_detected | Binary | Target label indicating whether the session is classified as a cyber attack. |
+| Feature             | Type        | Description                                                                  |
+| ------------------- | ----------- | ---------------------------------------------------------------------------- |
+| network_packet_size | Numerical   | The size of packets transmitted during a network session.                    |
+| protocol_type       | Categorical | The network protocol used during communication (TCP or UDP).                 |
+| login_attempts      | Numerical   | Number of login attempts within the session.                                 |
+| session_duration    | Numerical   | The total duration of the network session.                                   |
+| encryption_used     | Categorical | Type of encryption used in the connection.                                   |
+| ip_reputation_score | Numerical   | A score indicating the trustworthiness of the source IP address.             |
+| failed_logins       | Numerical   | Number of failed authentication attempts.                                    |
+| browser_type        | Categorical | Browser used in the session.                                                 |
+| unusual_time_access | Binary      | Indicates whether the session occurred at an unusual time.                   |
+| attack_detected     | Binary      | Target label indicating whether the session is classified as a cyber attack. |
 
 Target label indicating whether the session is classified as a cyber attack.
 
 ### Dataset 5 First Row:
 
-| session_id | network_packet_size | protocol_type | login_attempts | session_duration | encryption_used | ip_reputation_score | failed_logins | browser_type | unusual_time_access | attack_detected |
-|---|---|---|---|---|---|---|---|---|---|---|
-| SID_00001 | 599 | TCP | 4 | 492.9832634426563 | DES | 0.606818080396889 | 1 | Edge | 0 | <span style="color:red;font-weight:bold">1</span> |
-| SID_00002 | 472 | TCP | 3 | 1557.9964611204384 | DES | 0.30156896759608937 | 0 | Firefox | 0 | <span style="color:green;font-weight:bold">0</span> |
-| SID_00003 | 629 | TCP | 3 | 75.04426166420741 | DES | 0.7391643279163831 | 2 | Chrome | 0 | <span style="color:red;font-weight:bold">1</span> |
-| SID_00004 | 804 | UDP | 4 | 601.2488351708328 | DES | 0.12326717575248465 | 0 | Unknown | 0 | <span style="color:red;font-weight:bold">1</span> |
-| SID_00005 | 453 | TCP | 5 | 532.5408884201419 | AES | 0.05487385674317035 | 1 | Firefox | 0 | <span style="color:green;font-weight:bold">0</span> |
+| session_id | network_packet_size | protocol_type | login_attempts | session_duration   | encryption_used | ip_reputation_score | failed_logins | browser_type | unusual_time_access | attack_detected                                     |
+| ---------- | ------------------- | ------------- | -------------- | ------------------ | --------------- | ------------------- | ------------- | ------------ | ------------------- | --------------------------------------------------- |
+| SID_00001  | 599                 | TCP           | 4              | 492.9832634426563  | DES             | 0.606818080396889   | 1             | Edge         | 0                   | <span style="color:red;font-weight:bold">1</span>   |
+| SID_00002  | 472                 | TCP           | 3              | 1557.9964611204384 | DES             | 0.30156896759608937 | 0             | Firefox      | 0                   | <span style="color:green;font-weight:bold">0</span> |
+| SID_00003  | 629                 | TCP           | 3              | 75.04426166420741  | DES             | 0.7391643279163831  | 2             | Chrome       | 0                   | <span style="color:red;font-weight:bold">1</span>   |
+| SID_00004  | 804                 | UDP           | 4              | 601.2488351708328  | DES             | 0.12326717575248465 | 0             | Unknown      | 0                   | <span style="color:red;font-weight:bold">1</span>   |
+| SID_00005  | 453                 | TCP           | 5              | 532.5408884201419  | AES             | 0.05487385674317035 | 1             | Firefox      | 0                   | <span style="color:green;font-weight:bold">0</span> |
 
 ## Naive Bayes Implementation for Cyber Attack Detection
 
@@ -63,6 +141,7 @@ The dataset is loaded using the pandas library and contains multiple features re
 ```python
 df = pd.read_csv("./cybersecurity_intrusion_data.csv")
 ```
+
 Each row represents a single network session.
 
 ### 2. Exploratory Data Analysis (EDA)
@@ -86,11 +165,11 @@ Before applying the Naive Bayes models, several preprocessing steps were perform
 
 - #### Handling Missing Values
 
-    Missing values in the `encryption_used` feature were replaced with the category `"Unknown"`.
+  Missing values in the `encryption_used` feature were replaced with the category `"Unknown"`.
 
 - #### Encoding Categorical Features
 
-    Since machine learning models require numerical input, categorical features were converted into numerical values using Label Encoding.
+  Since machine learning models require numerical input, categorical features were converted into numerical values using Label Encoding.
 
 After preprocessing, the dataset is ready to be used for training Naive Bayes models.
 
@@ -103,7 +182,7 @@ X = df.drop("attack_detected", axis=1)
 y = df["attack_detected"]
 ```
 
-- **X** contains all input features  
+- **X** contains all input features
 - **y** represents the target label indicating whether the session is a cyber attack
 
 ### 5. Cross Validation using Stratified K-Fold
@@ -265,14 +344,15 @@ These probability outputs are useful for:
 - constructing ROC and precision–recall curves
 
 Therefore, probability outputs provide deeper insight into how the Naive Bayes classifier evaluates each network session.
+
 #### Naive Bayes Models in Scikit-Learn
 
-| Model | Feature Assumption | Likelihood Formula | Key Parameters | Suitable Data |
-|------|------|------|------|------|
-| **Gaussian Naive Bayes** | Features follow a normal (Gaussian) distribution | `P(x_i \| C) = (1 / √(2πσ²)) * exp(-(x_i - μ)² / (2σ²))` | μ = mean of feature for class C<br>σ² = variance of feature for class C | Continuous numerical features such as `network_packet_size`, `session_duration`, `ip_reputation_score` |
-| **Multinomial Naive Bayes** | Features represent discrete counts | `P(x_i \| C) = (N_ic + α) / (N_c + αn)` | N_ic = count of feature *i* in class C<br>N_c = total feature count in class C<br>n = number of features<br>α = Laplace smoothing parameter | Count-based features such as word frequencies in text classification |
-| **Bernoulli Naive Bayes** | Features are binary (0 or 1) variables | `P(x_i \| C) = p_ic^(x_i) * (1 - p_ic)^(1-x_i)` | x_i ∈ {0,1}<br>p_ic = probability that feature *i* appears in class C | Binary features such as presence/absence indicators |
-| **Complement Naive Bayes** | Extension of Multinomial NB designed for imbalanced datasets | `w_ci = log((N_ci + α) / (Σ N_cj + αn))` | N_ci = count of feature *i* in complement class<br>n = number of features<br>α = smoothing parameter | Imbalanced classification problems such as spam filtering or intrusion detection |
+| Model                       | Feature Assumption                                           | Likelihood Formula                                       | Key Parameters                                                                                                                               | Suitable Data                                                                                          |
+| --------------------------- | ------------------------------------------------------------ | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| **Gaussian Naive Bayes**    | Features follow a normal (Gaussian) distribution             | `P(x_i \| C) = (1 / √(2πσ²)) * exp(-(x_i - μ)² / (2σ²))` | μ = mean of feature for class C<br>σ² = variance of feature for class C                                                                      | Continuous numerical features such as `network_packet_size`, `session_duration`, `ip_reputation_score` |
+| **Multinomial Naive Bayes** | Features represent discrete counts                           | `P(x_i \| C) = (N_ic + α) / (N_c + αn)`                  | N*ic = count of feature \_i* in class C<br>N_c = total feature count in class C<br>n = number of features<br>α = Laplace smoothing parameter | Count-based features such as word frequencies in text classification                                   |
+| **Bernoulli Naive Bayes**   | Features are binary (0 or 1) variables                       | `P(x_i \| C) = p_ic^(x_i) * (1 - p_ic)^(1-x_i)`          | x*i ∈ {0,1}<br>p_ic = probability that feature \_i* appears in class C                                                                       | Binary features such as presence/absence indicators                                                    |
+| **Complement Naive Bayes**  | Extension of Multinomial NB designed for imbalanced datasets | `w_ci = log((N_ci + α) / (Σ N_cj + αn))`                 | N*ci = count of feature \_i* in complement class<br>n = number of features<br>α = smoothing parameter                                        | Imbalanced classification problems such as spam filtering or intrusion detection                       |
 
 In this project, these variants are compared to determine which Naive Bayes model performs best for detecting cyber attacks in network session data.
 
@@ -282,8 +362,8 @@ Each Naive Bayes model is trained using Stratified K-Fold cross validation.
 
 For each fold:
 
-1. Training data is used to fit the model  
-2. The model predicts labels on the validation fold  
+1. Training data is used to fit the model
+2. The model predicts labels on the validation fold
 3. Evaluation metrics are computed
 
 Example training step:
@@ -301,12 +381,12 @@ This process is repeated for all folds to obtain stable performance metrics.
 
 Model performance is evaluated using several classification metrics derived from the **confusion matrix**.
 
-| Term | Description |
-|-----|------|
-| **True Positive (TP)** | Attack sessions correctly classified as attacks |
-| **True Negative (TN)** | Normal sessions correctly classified as normal |
+| Term                    | Description                                       |
+| ----------------------- | ------------------------------------------------- |
+| **True Positive (TP)**  | Attack sessions correctly classified as attacks   |
+| **True Negative (TN)**  | Normal sessions correctly classified as normal    |
 | **False Positive (FP)** | Normal sessions incorrectly classified as attacks |
-| **False Negative (FN)** | Attack sessions incorrectly classified as normal |
+| **False Negative (FN)** | Attack sessions incorrectly classified as normal  |
 
 #### Accuracy
 
@@ -315,6 +395,7 @@ Accuracy measures the overall correctness of the model.
 ```
 Accuracy = (TP + TN) / (TP + TN + FP + FN)
 ```
+
 It represents the proportion of correctly classified instances among all predictions.
 
 #### Precision
@@ -324,6 +405,7 @@ Precision measures how many predicted attacks are actually attacks.
 ```
 Precision = TP / (TP + FP)
 ```
+
 High precision means the model produces fewer **false alarms**.
 
 #### Recall
@@ -382,6 +464,7 @@ grid_search = GridSearchCV(
     n_jobs=-1
 )
 ```
+
 #### Model Accuracy after Hyperparameter Tuning
 
 ![alt text](asset/image-4.png)
@@ -394,11 +477,11 @@ To evaluate the effectiveness of Naive Bayes, the results are compared with seve
 
 These include:
 
-- Logistic Regression  
-- K-Nearest Neighbors  
-- Decision Tree  
-- Random Forest  
-- Support Vector Machine  
+- Logistic Regression
+- K-Nearest Neighbors
+- Decision Tree
+- Random Forest
+- Support Vector Machine
 - Boosting models such as XGBoost, LightGBM, and CatBoost
 
 The performance of each model is compared using bar chart visualizations.
