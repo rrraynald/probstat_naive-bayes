@@ -9,6 +9,13 @@
 | 3 | Gilbran Mahdavikia Raja | 5025241134 |
 | 4 | Afarrel Febryan Ghiffari Putra Andy | 5025241137 |
 
+## Table of Contents
+
+- [Bayes Theory](#bayes-theory)
+- [Overview about the Dataset](#overview-about-the-dataset)
+- [How Bayes Theory Implemented in the Naive Bayes Model](#how-bayes-theory-implemented-in-the-naive-bayes-model)
+- [Naive Bayes Implementation for Cyber Attack Detection and Model Evaluation](#naive-bayes-implementation-for-cyber-attack-detection)
+
 ## Bayes Theory
 
 Bayes' Theorem is a fundamental concept in probability theory that describes how the probability of a hypothesis can be updated when new evidence becomes available. It provides a mathematical framework for reasoning under uncertainty by combining prior knowledge with observed data.
