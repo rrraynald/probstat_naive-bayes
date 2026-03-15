@@ -13,8 +13,6 @@ Bayes' Theorem is a fundamental concept in probability theory that describes how
 
 The general form of Bayes' Theorem is:
 
-P(A | B) = (P(B | A) \* P(A)) / P(B)
-
 ![rumus bayes](./asset/rumus-bayes.png)
 
 Where:
