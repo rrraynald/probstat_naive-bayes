@@ -83,14 +83,14 @@ The mathematical formulation used in Naive Bayes is:
 
 Where:
 
-| Term | Meaning |
-|-----|-----|
-| C | Class label (e.g., **Attack** or **Normal**) |
-| X1, X2, ..., Xn | Observed features such as protocol type, encryption used, browser type, session duration, and packet counts |
-| P(C  X1, ..., Xn) | Posterior probability: probability of class C given the observed features |
-| P(C) | Prior probability of class C |
-| P(X1, ..., Xn  C) | Likelihood: probability of observing the features if the class is C |
-| P(X1, ..., Xn) | Evidence: overall probability of observing the features |
+| Term             | Meaning                                                                                                     |
+| ---------------- | ----------------------------------------------------------------------------------------------------------- |
+| C                | Class label (e.g., **Attack** or **Normal**)                                                                |
+| X1, X2, ..., Xn  | Observed features such as protocol type, encryption used, browser type, session duration, and packet counts |
+| P(C X1, ..., Xn) | Posterior probability: probability of class C given the observed features                                   |
+| P(C)             | Prior probability of class C                                                                                |
+| P(X1, ..., Xn C) | Likelihood: probability of observing the features if the class is C                                         |
+| P(X1, ..., Xn)   | Evidence: overall probability of observing the features                                                     |
 
 Since the denominator $P(X_1, ..., X_n)$ is constant for all classes, the classifier focuses on maximizing the numerator:
 
