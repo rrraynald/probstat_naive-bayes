@@ -423,6 +423,8 @@ This process is repeated for all folds to obtain stable performance metrics.
 
 ![alt text](asset/image-3.png)
 
+![alt text](asset/clfreport.png)
+
 Model performance is evaluated using several classification metrics derived from the **confusion matrix**.
 
 | Term                    | Description                                       |
